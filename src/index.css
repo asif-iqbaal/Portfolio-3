@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+/* in globals.css */
+.liquid-red {
+  --liquid-button-color: #4f46e5;
+  --liquid-button-background-color: white;
+}
 /*
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

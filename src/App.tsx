@@ -1,7 +1,10 @@
-import { Twitter,CircleDotDashedIcon } from "lucide-react";
-import { FlipWords } from "./components/ui/flip-words";
-import { Button } from "@/components/ui/button"
-
+// import { Twitter,CircleDotDashedIcon } from "lucide-react";
+// import { FlipWords } from "./components/ui/flip-words";
+import { Button } from "./components/ui/button";
+import { LiquidButton } from "./components/animate-ui/components/buttons/liquid"
+import { FlipButton, FlipButtonBack, FlipButtonFront } from "./components/animate-ui/components/buttons/flip"
+import { Link, MapPin, Twitter, } from "lucide-react";
+import {Card} from 'flowbite-react';
 import {
   SiTypescript,
   SiReact,
@@ -24,142 +27,206 @@ import {
   SiTailwindcss,
 
 } from "react-icons/si";
-import { WobbleCard } from "./components/ui/wobble-card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./components/ui/tooltip";
-
+import { useState } from "react";
 function App() {
-  const words = ["websites", "saas"];
-  return (
+    const [showAll, setShowAll] = useState(false);
+
+  const skills = [
+    { front: <SiReact className="w-1/3 text-white h-10" />, back: "React" },
+    { front: <SiTypescript className="w-1/3 text-white h-10" />, back: "Typescript" },
+    { front: <SiDocker className="w-1/3 text-white h-10" />, back: "Docker" },
+    { front: <SiJavascript className="w-1/3 text-white h-10" />, back: "Javascript" },
+    { front: <SiTailwindcss className="w-1/3 text-white h-10" />, back: "Tailwind CSS" },
+    { front: <SiNextdotjs className="w-1/3 text-white h-10" />, back: "Next.js" },
+
+    // rest items...
+    { front: <SiMongodb className="w-1/3 text-white h-10" />, back: "MongoDB" },
+    { front: <SiExpress className="w-1/3 text-white h-10" />, back: "Express" },
+    { front: <SiPython className="w-1/3 text-white h-10" />, back: "Python" },
+    { front: <SiVercel className="w-1/3 text-white h-10" />, back: "Vercel" },
+    { front: <SiGit className="w-1/3 text-white h-10" />, back: "Git" },
+    { front: <SiCplusplus className="w-1/3 text-white h-10" />, back: "C++" },
+    { front: <SiC className="w-1/3 text-white h-10" />, back: "C" },
+    { front: <SiHtml5 className="w-1/3 text-white h-10" />, back: "HTML5" },
+    { front: <SiCss3 className="w-1/3 text-white h-10" />, back: "CSS3" },
+    { front: <SiLinux className="w-1/3 text-white h-10" />, back: "Linux" },
+    { front: <i className="devicon-java-plain text-white"></i>, back: "Java" },
+  ];
+
+  const visibleSkills = showAll ? skills : skills.slice(0, 6);
+  return(
     <>
-      <div className="w-screen h-full bg-[#03071e] px-10 py-5 overflow-x-hidden ">
-        {/* Introduction section */}
-        <div className="w-full md:flex">
-
-          <div className="md:w-2/3 md:py-10">
-            <div className=" flex flex-col  md:px-4">
-              <div className="md:text-5xl  text-3xl font-bold text-white font-stretch-50% font-serif ">MD SHAMI!</div>
-              <div className="md:text-4xl text-2xl p-3 md:p-6 mx-auto font-mono text-white dark:text-neutral-400 w-full">
-                I am full stack engineer building
-                <FlipWords words={words} className="text-white" /> <br />
-                <p className="flex items-center"><CircleDotDashedIcon  className="text-green-500 m-1"/>Currently available for work</p>
-                
-              </div>
-              <div className="text-white p-2 font-serif font-stretch-100%  max-w-fit md:text-xl" onClick={() => window.open("https://mail.google.com/","_blank")}>Gmail - <a href="#" className="text-blue-200  hover:text-green-400">shamiimd94@gmail.com</a></div>
-              <div>
-                <Button className="p-5 m-3 rounded-none bg-green-600 text-2xl text-white font-serif hover:cursor-pointer"
-                onClick={() => window.open("/resume.pdf", "_blank")}
-                > Download CV</Button>
-              </div>
+    <div className="h-full w-full md:my-10  md:px-50  p-8">
+    <div>
+      {/* heading */}
+      {/* <div></div> */}
+      {/* herosection */}
+      <div className="w-full h-auto md:flex">
+        <div className="md:w-2/3">
+            <p className="font-serif md:text-6xl text-2xl font-bold text-gray-900 leading-snug tracking-tight">
+              Hi I am <span className="text-indigo-600">Md Shami</span> <br />
+              A Full Stack Developer
+            </p>
+            <p className="md:text-xl tracking-tight font-serif">
+              I am skilled in react and express js  currently seeking knowledge in next js  i want to 
+              controbute for real world projects and learn new things that encourage me to learn more .
+            </p>
+            <div className="gap-1 md:w-auto h-auto p-5 flex flex-col md:flex-row">
+              <LiquidButton className="liquid-red text-gray-800 m-2 border hover:text-white">
+                Work with Me
+              </LiquidButton>
+              <LiquidButton className="liquid-red text-gray-800 m-2 border hover:text-white cursor-pointer"  onClick={() => window.open("/resume.pdf", "_blank")}>
+                Download CV
+              </LiquidButton>
             </div>
-          </div>
-
-          <div className="md:w-1/3 flex  items-center">
-            <img src="/profile.svg" alt="photo" className="md:h-1/2 w-auto rounded-full bg-green-300" />
+        </div>
+        <div className="md:w-1/3 flex justify-center item-center h-auto">
+          <div className="rounded"> 
+            <img src="/profile.svg" alt="profile" className="h-full w-full"/>
           </div>
         </div>
-        {/* experience section */}
-        <div className="md:py-10 flex flex-col">
-          <div className="font-bold font-serif md:text-6xl text-3xl text-white md:py-2 ">Experience</div>
-          <div>
-            <p className="md:text-3xl text-2xl font-mono text-white md:p-4 p-2 font-semibold">HUBNEX LABS</p>
-            <p className="text-xl font-serif text-white px-5 flex">FULL-STACK-ENGINEER - <p className="text-green-500">Remote</p></p>
-            <div className="md:px-10 px-8">
-              <li className="md:text-lg font-sans text-white">Contributed to the development of real-world applications with a focus on scalability, efficiency, and seamless user experiences.</li>
-              <li className="md:text-lg font-sans text-white">Actively participated in code reviews, debugging, and optimizations, aligning solutions with industry standards and company goals to drive impact and deliver measurable results.</li>
-            </div>
-          </div>
-        </div>
-        {/* skills */}
-        <div className="md:py-10 p-4 flex flex-col">
-          <div className="font-bold font-serif md:text-6xl text-3xl text-white md:py-2 ">Skills</div>
-          <div className="flex flex-wrap flex-grid md:grid-cols-4 grid-cols-2 md:gap-1 gap-2.5">
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg">
-              <SiJavascript />  JavaScript
-            </Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"> <SiTypescript />TypeScript</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiReact />React</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiNextdotjs />Node.js</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiExpress />Express.js</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiMongodb />MongoDB</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:md:text-lg">SQL</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiHtml5 />HTML5</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiCss3 />CSS3</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiGit />Git</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiDocker />Docker</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><img src="/aws.png" alt="aws" className="h-auto w-15" /></Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiPython />Python</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><i className="devicon-java-plain "></i>Java</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiCplusplus /> C++</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiC /> C</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiLinux />Linux</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiVercel /> Vercel</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg"><SiTailwindcss /> TailwindCss</Button>
-            <Button className="md:m-4 md:p-5 rounded bg-blue-600 text-white font-serif hover:cursor-pointer md:text-lg">DSA</Button>
-          </div>
-        </div>
-        {/* projects */}
-        <div className="md:py-10 p-4 flex flex-col">
-          <div className="font-bold font-serif md:text-6xl text-3xl text-white md:py-2 text-center">Projects</div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
-            <WobbleCard
-              containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px]"
-              className=""
-            >
-              <div className="max-w-xs">
-                <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                  Grow Fund
-                </h2>
-                <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                  A crowd funding platform that connects startups with investors, providing a seamless experience for both parties to raise and invest funds securely.
-
-                </p>
+      </div>
+      {/* experience */}
+      <div className="py-10 w-full">
+        <div className=" p-2"><h1 className="text-5xl text-indigo-600 tracking-tight font-serif font-bold">Experience</h1></div>
+        <div className="w-full p-3">
+              <div className="md:flex justify-between w-full">
+                <div className="text-2xl font-semibold tracking-tight font-serif">Full Stack Engineer <Button className="bg-indigo-500 text-white text-lg font-serif">Remote</Button></div>
+                <div>
+                  <div className="text-xl font-semibold tracking-wider font-serif text-gray-800 cursor-pointer">Hubnex Labs </div>
+                  <div className="py-2"><p className="font-serif tracking-tighter text-gray-800">oct 2024 - jan 2025</p></div>
+                  <div className="flex justify-center text-gray-900 item-center font-sans tracking-tight"><span><MapPin className="text-red-600 font-bold" height={20} width={20}/></span>gurugram, haryana </div>
+                </div>
               </div>
-              <img
-                src="/profile.svg"
-                width={500}
-                height={500}
-                alt="linear demo image"
-                className="absolute -right-4 lg:-right-[40%] grayscale filter -bottom-10 object-contain rounded-2xl"
-              />
-            </WobbleCard>
-            <WobbleCard containerClassName="col-span-1 min-h-[300px]">
-              <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Clear Chat
-              </h2>
-              <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-                A chat application that enables real-time messaging , file sharing and a user-friendly interface for seamless communication.
-
-              </p>
-            </WobbleCard>
-            <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
-              <div className="max-w-sm">
-                <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                  Nowizo
-                </h2>
-                <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-
-                  A social media platform that allows users to connect, share content, and engage with a vibrant community through posts, comments, and likes.
-
-                </p>
+              <div className="px-5">
+                <li className="text-gray-800 font-serif tracking-wide">
+                  <ul>Built and maintained full-stack features using <span className="text-indigo-600 font-semibold">React</span>,<span className="text-indigo-600 font-semibold">Node.js</span>, <span className="text-indigo-600 font-semibold">Express</span>, and <span className="text-indigo-600 font-semibold">MongoDB</span>for real-world client projects.</ul>
+                  <ul>Developed responsive UI components, integrated REST APIs, and improved user experience using Tailwind CSS and modern frontend practices.</ul>
+                  <ul>Worked closely with a cross-functional team, collaborated on feature planning, resolved issues together, and followed Git-based workflows.</ul>
+                </li>
               </div>
-              <img
-                src="/linear.webp"
-                width={500}
-                height={500}
-                alt="linear demo image"
-                className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10 object-contain rounded-2xl"
-              />
-            </WobbleCard>
-          </div>
         </div>
-        {/* connects Links */}
-        <div className="md:py-10 py-4 flex flex-col justify-center items-center">
+      </div>
+      {/* Skills */}
+      <div className="py-10 w-full  ">
+         <div className=" p-2"><h1 className="text-5xl text-indigo-600 tracking-tight font-serif font-bold">Skills</h1></div>
+          <div className="flex flex-col items-center">
+      <div className="flex flex-wrap gap-3 justify-evenly md:px-40 transition">
+        {visibleSkills.map((item, idx) => (
+          <FlipButton key={idx} className="h-20 w-40">
+            <FlipButtonFront className="w-full bg-indigo-600 flex justify-center items-center">
+              {item.front}
+            </FlipButtonFront>
+            <FlipButtonBack className="w-full text-xl tracking-tight font-serif font-bold text-white bg-indigo-600 flex justify-center items-center">
+              {item.back}
+            </FlipButtonBack>
+          </FlipButton>
+        ))}
+      </div>
+
+      {/* SEE MORE / SEE LESS BUTTON */}
+      <button
+        onClick={() => setShowAll(!showAll)}
+        className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+      >
+        {showAll ? "See Less" : "See More"}
+      </button>
+    </div>
+      </div>
+      {/* projects */}
+      <div className="py-5">
+         <div className=" p-2"><h1 className="text-5xl text-indigo-600 tracking-tight font-serif font-bold">Projects</h1></div>
+        <div className="flex flex-wrap w-full justify-evenly">
+        <Card
+      className="max-w-sm m-1"
+      imgAlt="Meaningful alt text for an image that is not purely decorative"
+      imgSrc="./gofund.png"
+    >
+      <div className="flex justify-between"><h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
+        Grow Fund
+      </h5>
+      <a href="https://crowd-funding-client-dbq7.vercel.app/"><LiquidButton className="liquid-red text-gray-800 m-2 border hover:text-white cursor-pointer">Visit <Link/></LiquidButton></a>
+      </div>
+      
+      <p className="font-normal text-gray-700 dark:text-gray-400 px-2 tracking-wide font-serif">
+       A Crowd-funding platform where user create campaign and start to achieve their goal.
+       <div>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">React</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">express js</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Razorpay</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Typescript</span>
+       </div>
+      </p>
+    </Card>
+    <Card
+      className="max-w-sm m-1"
+      imgAlt="Meaningful alt text for an image that is not purely decorative"
+      imgSrc="./nowizo.png"
+    >
+      <div className="flex justify-between"><h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
+        Nowizo
+      </h5>
+      <a href="https://nowizo.vercel.app/auth/signup"><LiquidButton className="liquid-red text-gray-800 m-2 border hover:text-white cursor-pointer">Visit <Link/></LiquidButton></a>
+      </div>
+      <p className="font-normal text-gray-700 dark:text-gray-400 px-2 tracking-wide font-serif">
+        A social media flatform for blogging and texting.
+        <div>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Next js</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Typescript</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Tailwind css</span>
+       </div>
+      </p>
+    </Card>
+    <Card
+      className="max-w-sm m-1"
+      imgAlt="Meaningful alt text for an image that is not purely decorative"
+      imgSrc="./chat.jpg"
+    >
+      <div className="flex justify-between"><h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
+        Clear Chat
+      </h5>
+      <a href="https://clearchat.netlify.app/"><LiquidButton className="liquid-red text-gray-800 m-2 border hover:text-white cursor-pointer">Visit <Link/></LiquidButton></a>
+      </div>
+      <p className="font-normal text-gray-700 dark:text-gray-400 px-2 tracking-wide font-serif">
+        Chatting web app for real time chat experience.
+        <div>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">React</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Firebase</span>
+      </div>
+      </p>
+    </Card>
+    <Card
+      className="max-w-sm m-1"
+      imgAlt="Meaningful alt text for an image that is not purely decorative"
+      imgSrc="./jarvis.jpg"
+    >
+      <div className="flex justify-between"><h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
+        Jarvis Desktop Assistant
+      </h5>
+      <LiquidButton className="liquid-red text-gray-800 m-2 border hover:text-white cursor-pointer">Visit <Link/></LiquidButton>
+      </div>
+      <p className="font-normal text-gray-700 dark:text-gray-400 px-2 tracking-wide font-serif">
+        Desktop Assistant where it give local and global information by voice command.
+        <div>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Python</span>
+       <span className="text-serif font-semibold text-indigo-600 tracking-tight p-1">Gemini</span>
+        </div>
+      </p>
+    </Card>
+    </div>
+      </div>
+      {/* connect */}
+      <div></div>
+      {/* footer  */}
+      <div>
+         <div className=" flex flex-col justify-center items-center">
           <div className="gap-2 flex">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className="rounded-full text-white"
+                  className="rounded-full text-white bg-indigo-600"
                   onClick={() => window.open("https://x.com/ShamiiMd/", "_blank")}
                 ><Twitter /></Button>
               </TooltipTrigger>
@@ -172,7 +239,7 @@ function App() {
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className="rounded-full text-white"
+                  className="rounded-full text-white bg-indigo-600"
                   onClick={() => window.open("https://github.com/asif-iqbaal/", "_blank")}
                 ><SiGithub /></Button>
               </TooltipTrigger>
@@ -185,7 +252,7 @@ function App() {
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className="rounded-full text-white"
+                  className="rounded-full text-white bg-indigo-600"
                   onClick={() => window.open("https://www.linkedin.com/in/mdshami712/", "_blank")}
                 >
                   <SiLinkedin />
@@ -200,7 +267,7 @@ function App() {
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className="rounded-full text-white"
+                  className="rounded-full text-white bg-indigo-600"
                   onClick={() => window.open("https://www.instagram.com/shami_md07/", "_blank")}
                 ><SiInstagram /></Button>
               </TooltipTrigger>
@@ -211,6 +278,8 @@ function App() {
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </>
   )
 }
